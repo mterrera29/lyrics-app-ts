@@ -1,0 +1,146 @@
+.app-header {
+  position: relative;
+  top: 0;
+  left: 0;
+  color: var(--fontColorBlack);
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+}
+
+.title-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.title {
+  margin: 0;
+  color: var(--purple);
+}
+
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
+  z-index: 1002;
+}
+
+.bar {
+  background-color: var(--purple);
+  height: 5px;
+  width: 100%;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.bar.open:nth-child(1) {
+  transform: translateY(10px) rotate(45deg);
+}
+
+.bar.open:nth-child(2) {
+  opacity: 0;
+}
+
+.bar.open:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 25%;
+  height: 100%;
+  background-color: var(--fondoLight);
+  color: white;
+  transition: left 0.3s ease;
+  padding: 20px;
+  padding-top: 50px;
+  z-index: 1001;
+  box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+.side-menu.open {
+  left: 0;
+}
+
+.side-menu nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+.side-menu nav ul li {
+  margin: 20px 0;
+}
+
+.side-menu nav ul li a {
+  color: var(--purple);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.close-btn {
+  background-color: transparent;
+  color: white;
+  font-size: 30px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  padding: 10px;
+  top: 0px;
+  right: 10px;
+  height: 50px;
+}
+
+.hamburger-icon {
+  background-color: white;
+  height: 5px;
+  width: 100%;
+  border-radius: 3px;
+}
+
+.hamburger-menu:hover .hamburger-icon {
+  background-color: #ddd;
+}
+
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.modal-close {
+  background-color: transparent;
+  color: #333;
+  font-size: 28px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  top: -5px;
+  right: 15px;
+  padding: 5px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.modal-close:hover {
+  color: #e74c3c;
+  transform: scale(1.1);
+}
+
+.modal-close:focus {
+  outline: none;
+}
+
+.modal-close:active {
+  transform: scale(0.95);
+}
