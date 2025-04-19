@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import Header from './components/Header/Header';
 import { useAuthStore } from './stores/authStore';
 import { useSongsStore } from './stores/songStore';
+import UserFilteredSongs from './components/UsersSongs/UserFilteredSongs';
 
 function App() {
   const user = useAuthStore((state) => state.user);
@@ -17,12 +18,17 @@ function App() {
   return (
     <>
       <Header />
-      <div>
-        {loading ? (
-          <h3>Cargando</h3>
-        ) : (
-          songs.map((song) => <h4>{song.title} </h4>)
-        )}
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginTop: '10px',
+          marginBottom: '10px',
+        }}
+      >
+        {loading ? <h3>Cargando</h3> : <UserFilteredSongs songs={songs} />}
       </div>
     </>
   );

@@ -75,7 +75,7 @@ const Header = () => {
                   backgroundColor: 'var(--purple)',
                   color: 'white',
                   border: 'none',
-                  borderRadius: '14px',
+                  borderRadius: '20px',
                   cursor: 'pointer',
                 }}
               >
