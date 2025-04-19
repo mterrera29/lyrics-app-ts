@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import Header from './components/Header/Header';
 import { useAuthStore } from './stores/authStore';
 import { useSongsStore } from './stores/songStore';
-import UserFilteredSongs from './components/UsersSongs/UserFilteredSongs';
+import UsersSongs from './components/UsersSongs/UsersSongs';
 
 function App() {
   const user = useAuthStore((state) => state.user);
@@ -28,7 +28,7 @@ function App() {
           marginBottom: '10px',
         }}
       >
-        {loading ? <h3>Cargando</h3> : <UserFilteredSongs songs={songs} />}
+        {loading ? <h3>Cargando</h3> : <UsersSongs songs={songs} />}
       </div>
     </>
   );
