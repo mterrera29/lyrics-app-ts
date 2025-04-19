@@ -1,18 +1,22 @@
 import { useEffect, useState } from 'react';
 import UserFilteredSongs from './UserFilteredSongs';
+import { Song } from '../../types';
+type UserSongsProps = {
+  songs: Song[];
+};
 
-export default function UsersSongs({ songs }) {
+export default function UserSongs({ songs }: UserSongsProps) {
   const [selectedAuthor, setSelectedAuthor] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredSongs, setFilteredSongs] = useState([]);
+  const [filteredSongs, setFilteredSongs] = useState<Song[]>([]);
   const [modalData, setModalData] = useState({
     isOpen: false,
     selectedSong: null,
   });
 
   useEffect(() => {
-    const filtered = songs.filter((song) => {
+    const filtered: Song[] = songs.filter((song) => {
       const matchesAuthor =
         !selectedAuthor ||
         song.artist.toLowerCase() === selectedAuthor.toLowerCase();
@@ -26,6 +30,7 @@ export default function UsersSongs({ songs }) {
     });
 
     setFilteredSongs(filtered);
+    console.log(filtered);
   }, [selectedAuthor, selectedGenre, searchQuery, songs]);
   return (
     <div>
