@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import UserFilteredSongs from './UserFilteredSongs';
 import { Song } from '../../types';
+import ButtonCategory from '../Buttons/ButtonCategory';
 type UserSongsProps = {
   songs: Song[];
 };
