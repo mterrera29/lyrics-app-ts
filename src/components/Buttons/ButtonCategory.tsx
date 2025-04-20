@@ -1,5 +1,25 @@
+import { ReactNode } from 'react';
 import styles from './ButtonCategory.module.css';
 
-export default function ButtonCategory({ children }) {
-  return <div className={styles.button}>{children}</div>;
+type ButtonCategoryProps = {
+  children: ReactNode;
+  selected: boolean;
+};
+
+export default function ButtonCategory({
+  children,
+  selected,
+}: ButtonCategoryProps) {
+  return (
+    <div
+      className={styles.button}
+      style={
+        selected
+          ? { backgroundColor: 'var(--purple)' }
+          : { backgroundColor: 'var(--purpleOpacity)' }
+      }
+    >
+      {children}
+    </div>
+  );
 }
