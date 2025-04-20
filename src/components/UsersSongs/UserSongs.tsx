@@ -2,12 +2,16 @@ import { useEffect, useState } from 'react';
 import UserFilteredSongs from './UserFilteredSongs';
 import { Song } from '../../types';
 import ButtonCategory from '../Buttons/ButtonCategory';
+import styles from './UserSongs.module.css';
 type UserSongsProps = {
   songs: Song[];
 };
 
 export default function UserSongs({ songs }: UserSongsProps) {
-  const [selectedButton, setSelectedButton] = useState('Todas');
+  const [selectedButton, setSelectedButton] = useState({
+    id: 0,
+    value: 'Todas',
+  });
   const [selectedAuthor, setSelectedAuthor] = useState('');
   const [selectedGenre, setSelectedGenre] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
@@ -32,10 +36,9 @@ export default function UserSongs({ songs }: UserSongsProps) {
     });
 
     setFilteredSongs(filtered);
-    console.log(filtered);
   }, [selectedAuthor, selectedGenre, searchQuery, songs]);
   return (
-    <div>
+    <div style={{ width: '500px' }}>
       <section
         style={{
           display: 'flex',
@@ -45,21 +48,40 @@ export default function UserSongs({ songs }: UserSongsProps) {
           marginBottom: '10px',
         }}
       >
-        <div onClick={() => setSelectedButton('Todas')}>
-          <ButtonCategory selected={selectedButton === 'Todas' ? true : false}>
+        <div
+          onClick={() =>
+            setSelectedButton({
+              id: 0,
+              value: 'Todas',
+            })
+          }
+        >
+          <ButtonCategory selected={selectedButton.id === 0 ? true : false}>
             Todas
           </ButtonCategory>
         </div>
-        <div onClick={() => setSelectedButton('Artista')}>
-          <ButtonCategory
-            selected={selectedButton === 'Artista' ? true : false}
-          >
-            Artista
+        <div
+          onClick={() =>
+            setSelectedButton({
+              id: 1,
+              value: 'Artistas',
+            })
+          }
+        >
+          <ButtonCategory selected={selectedButton.id === 1 ? true : false}>
+            Artistas
           </ButtonCategory>
         </div>
-        <div onClick={() => setSelectedButton('Género')}>
-          <ButtonCategory selected={selectedButton === 'Género' ? true : false}>
-            Género
+        <div
+          onClick={() =>
+            setSelectedButton({
+              id: 2,
+              value: 'Géneros',
+            })
+          }
+        >
+          <ButtonCategory selected={selectedButton.id === 2 ? true : false}>
+            Géneros
           </ButtonCategory>
         </div>
       </section>
@@ -72,13 +94,14 @@ export default function UserSongs({ songs }: UserSongsProps) {
           marginBottom: '10px',
         }}
       >
-        {selectedButton === 'Artista' && (
+        {selectedButton.id === 1 && (
           <div>
             <select
               value={selectedAuthor}
               onChange={(e) => setSelectedAuthor(e.target.value)}
+              className={styles.select}
             >
-              <option value=''>Todos los Autores</option>
+              <option value=''>Todos los Artistas </option>
               {[...new Set(songs.map((song) => song.artist))].map(
                 (author, index) => (
                   <option key={index} value={author}>
@@ -89,13 +112,14 @@ export default function UserSongs({ songs }: UserSongsProps) {
             </select>
           </div>
         )}
-        {selectedButton === 'Género' && (
+        {selectedButton.id === 2 && (
           <div>
             <select
               value={selectedGenre}
               onChange={(e) => setSelectedGenre(e.target.value)}
+              className={styles.select}
             >
-              <option value=''>Todos los Géneros</option>
+              <option value=''>Todos los Géneros </option>
               {[...new Set(songs.map((song) => song.genre))].map(
                 (genre, index) => (
                   <option key={index} value={genre}>
@@ -106,7 +130,7 @@ export default function UserSongs({ songs }: UserSongsProps) {
             </select>
           </div>
         )}
-        {selectedButton === 'Todas' && (
+        {selectedButton.id === 0 && (
           <div
             style={{
               display: 'flex',
@@ -118,11 +142,7 @@ export default function UserSongs({ songs }: UserSongsProps) {
               placeholder='Buscar canción...'
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              style={{
-                padding: '5px',
-                borderRadius: '4px',
-                border: '1px solid #ccc',
-              }}
+              className={styles.input}
             />
           </div>
         )}

@@ -16,7 +16,7 @@ export default function ButtonCategory({
       style={
         selected
           ? { backgroundColor: 'var(--purple)' }
-          : { backgroundColor: 'var(--purpleOpacity)' }
+          : { backgroundColor: 'var(--purpleOpacity2)' }
       }
     >
       {children}

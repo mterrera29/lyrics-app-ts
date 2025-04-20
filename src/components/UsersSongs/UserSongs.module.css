@@ -1,0 +1,32 @@
+.select {
+  padding: 5px;
+  padding-right: 25px;
+  font-size: 16px;
+  border: 2px solid var(--purple);
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  height: 35px;
+  color: #333;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+}
+.input {
+  padding: 5px 12px;
+  font-size: 16px;
+  border: 2px solid var(--purple);
+  border-radius: 8px;
+  height: 35px;
+  background-color: #f9f9f9;
+  color: #333;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+}
