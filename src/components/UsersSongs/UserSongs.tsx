@@ -3,6 +3,7 @@ import UserFilteredSongs from './UserFilteredSongs';
 import { Song } from '../../types';
 import ButtonCategory from '../Buttons/ButtonCategory';
 import styles from './UserSongs.module.css';
+import Categories from './ButtonsCategory/Categories/Categories';
 type UserSongsProps = {
   songs: Song[];
 };
@@ -48,61 +49,21 @@ export default function UserSongs({ songs }: UserSongsProps) {
   useEffect(() => {
     setSelectedAuthor('');
     setSelectedGenre('');
+    setSearchQuery('');
   }, [selectedButton]);
 
   return (
     <div className={styles.container}>
-      <section
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'flex-start',
-          marginTop: '10px',
-          marginBottom: '10px',
-        }}
-      >
-        <div
-          onClick={() =>
-            setSelectedButton({
-              id: 0,
-              value: 'Todas',
-            })
-          }
-        >
-          <ButtonCategory selected={selectedButton.id === 0 ? true : false}>
-            Todas
-          </ButtonCategory>
-        </div>
-        <div
-          onClick={() =>
-            setSelectedButton({
-              id: 1,
-              value: 'Artistas',
-            })
-          }
-        >
-          <ButtonCategory selected={selectedButton.id === 1 ? true : false}>
-            Artistas
-          </ButtonCategory>
-        </div>
-        <div
-          onClick={() =>
-            setSelectedButton({
-              id: 2,
-              value: 'Géneros',
-            })
-          }
-        >
-          <ButtonCategory selected={selectedButton.id === 2 ? true : false}>
-            Géneros
-          </ButtonCategory>
-        </div>
-      </section>
+      <Categories
+        selectedButton={selectedButton}
+        setSelectedButton={setSelectedButton}
+      />
       <div
         style={{
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'space-between',
+          alignItems: 'center',
           marginTop: '10px',
           marginBottom: '10px',
         }}
@@ -152,7 +113,7 @@ export default function UserSongs({ songs }: UserSongsProps) {
           >
             <input
               type='text'
-              placeholder='Buscar canción...'
+              placeholder='Buscar canción o artista...'
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className={styles.input}
