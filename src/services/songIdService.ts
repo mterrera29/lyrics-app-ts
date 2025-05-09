@@ -2,7 +2,10 @@ import axios from 'axios';
 import { SongSchema } from '../schema/songSchema';
 import { User } from 'firebase/auth';
 
-export const fetchSongById = async (user: User | null, id: string) => {
+export const fetchSongById = async (
+  user: User | null,
+  id: string | undefined
+) => {
   if (!user) {
     console.error('El usuario no está autenticado');
     return;

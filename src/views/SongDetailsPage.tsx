@@ -1,24 +1,17 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import './SongDetails.css';
-import SongContent from './SongContent.tsx';
-import { useAuthStore } from '../../stores/authStore.js';
-import { useSongsStore } from '../../stores/songStore.js';
+import SongContent from '../components/DetailsSong/SongContent.tsx';
+import { useSongsStore } from '../stores/songStore.js';
 
 function SongDetailsPage() {
   const { id } = useParams();
-  const user = useAuthStore((state) => state.user);
-  const fetchDataById = useSongsStore((state) => state.fetchDataById);
-  const song = useSongsStore((state) => state.songById);
+  const songs = useSongsStore((state) => state.songs);
+  const filterSong = songs.filter((song) => song.id === id);
+  const song = filterSong[0];
   const [fontSizeLyrics, setFontSizeLyrics] = useState(16);
   const [fontSizeChords, setFontSizeChords] = useState(16);
   const [activeTab, setActiveTab] = useState('lyrics');
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchDataById(user, id);
-  }, []);
-
   useEffect(() => {
     if (song) {
       if (song.fontSizeLyrics) {

@@ -42,7 +42,7 @@
   color: var(--purple);
   cursor: pointer;
 }
-.sortIcon {
+.sortIcon i {
   width: 35;
   height: 35;
 }
