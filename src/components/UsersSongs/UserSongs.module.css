@@ -46,10 +46,18 @@
   width: 35;
   height: 35;
 }
+.searchQuery {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
 
 @media (max-width: 768px) {
   .container {
     width: 100%;
     padding: 2px;
+  }
+  .searchQuery {
+    flex-direction: column;
   }
 }

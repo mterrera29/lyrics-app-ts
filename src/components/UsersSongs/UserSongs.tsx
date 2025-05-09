@@ -68,7 +68,7 @@ export default function UserSongs({ songs }: UserSongsProps) {
         }}
       >
         {selectedButton.id === 1 && (
-          <div>
+          <div className={styles.searchQuery}>
             <select
               value={selectedAuthor}
               onChange={(e) => setSelectedAuthor(e.target.value)}
@@ -83,10 +83,24 @@ export default function UserSongs({ songs }: UserSongsProps) {
                 )
               )}
             </select>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <input
+                type='text'
+                placeholder='Buscar canción...'
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className={styles.input}
+              />
+            </div>
           </div>
         )}
         {selectedButton.id === 2 && (
-          <div>
+          <div className={styles.searchQuery}>
             <select
               value={selectedGenre}
               onChange={(e) => setSelectedGenre(e.target.value)}
@@ -101,6 +115,20 @@ export default function UserSongs({ songs }: UserSongsProps) {
                 )
               )}
             </select>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <input
+                type='text'
+                placeholder='Buscar canción...'
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className={styles.input}
+              />
+            </div>
           </div>
         )}
         {selectedButton.id === 0 && (
@@ -167,7 +195,7 @@ export default function UserSongs({ songs }: UserSongsProps) {
         </div>
       </div>
       {songs.length === 0 ? (
-        <p>No hay canciones aún.</p>
+        <p>No hay canciones.</p>
       ) : (
         <UserFilteredSongs songs={filteredSongs} />
       )}
