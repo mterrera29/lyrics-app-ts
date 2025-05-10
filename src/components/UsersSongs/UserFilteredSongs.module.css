@@ -1,3 +1,26 @@
+.containerSongs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.input {
+  padding: 5px 12px;
+  font-size: 16px;
+  border: 2px solid var(--purple);
+  border-radius: 8px;
+  height: 35px;
+  background-color: #f9f9f9;
+  color: #333;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+}
 .songList {
   width: 500px;
   display: flex;

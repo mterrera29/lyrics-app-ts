@@ -4,24 +4,24 @@ import SvgIcon from '../Buttons/SvgIcon';
 import SortAZ from './SortAZ';
 
 type UserFilteredAuthorsProps = {
-  artist: string[];
-  setSelectedAuthor: React.Dispatch<React.SetStateAction<string>>;
+  genres: string[];
+  setSelectedGenre: React.Dispatch<React.SetStateAction<string>>;
   searchQuery: string;
   setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
-  sortArtist: string;
-  setSortArtist: React.Dispatch<React.SetStateAction<string>>;
+  sortGenre: string;
+  setSortGenre: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const UserFilteredAuthors = ({
-  artist,
-  setSelectedAuthor,
+const UserFilteredGenres = ({
+  genres,
+  setSelectedGenre,
   searchQuery,
   setSearchQuery,
-  sortArtist,
-  setSortArtist,
+  sortGenre,
+  setSortGenre,
 }: UserFilteredAuthorsProps) => {
   const handleClick = (author: string) => {
-    setSelectedAuthor(author);
+    setSelectedGenre(author);
   };
   return (
     <section>
@@ -50,10 +50,10 @@ const UserFilteredAuthors = ({
             />
           </div>
         </div>
-        <SortAZ setSort={setSortArtist} sort={sortArtist} />
+        <SortAZ setSort={setSortGenre} sort={sortGenre} />
       </div>
       <ul className={styles.songList}>
-        {artist.map((author, index) => (
+        {genres.map((genre, index) => (
           <li
             style={{
               display: 'flex',
@@ -65,7 +65,7 @@ const UserFilteredAuthors = ({
             }}
             key={index}
             className={styles.song}
-            onClick={() => handleClick(author)}
+            onClick={() => handleClick(genre)}
           >
             <section
               style={{
@@ -89,7 +89,7 @@ const UserFilteredAuthors = ({
                 <img src={imgIcon} alt='' className={styles.imgIcon} />
               </div>
               <section className={styles.info}>
-                <p className={styles.title}>{author}</p>
+                <p className={styles.title}>{genre}</p>
               </section>
             </section>
             <SvgIcon
@@ -106,4 +106,4 @@ const UserFilteredAuthors = ({
   );
 };
 
-export default UserFilteredAuthors;
+export default UserFilteredGenres;
