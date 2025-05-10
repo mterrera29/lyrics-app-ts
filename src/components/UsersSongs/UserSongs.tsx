@@ -3,6 +3,7 @@ import UserFilteredSongs from './UserFilteredSongs';
 import { Song } from '../../types';
 import styles from './UserSongs.module.css';
 import Categories from './ButtonsCategory/Categories/Categories';
+import UserFilteredAuthors from './UserFIlteredAuthors';
 
 type UserSongsProps = {
   songs: Song[];
@@ -92,7 +93,7 @@ export default function UserSongs({ songs }: UserSongsProps) {
             >
               <input
                 type='text'
-                placeholder='Buscar canción...'
+                placeholder='Buscar artista...'
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className={styles.input}
@@ -197,8 +198,10 @@ export default function UserSongs({ songs }: UserSongsProps) {
       </div>
       {songs.length === 0 ? (
         <p>No hay canciones.</p>
-      ) : (
+      ) : selectedButton.id === 0 ? (
         <UserFilteredSongs songs={filteredSongs} />
+      ) : (
+        selectedButton.id === 1 && <UserFilteredAuthors songs={filteredSongs} />
       )}
     </div>
   );
