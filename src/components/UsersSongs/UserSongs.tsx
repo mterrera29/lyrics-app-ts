@@ -17,10 +17,10 @@ export default function UserSongs({ songs }: UserSongsProps) {
   const [selectedGenre, setSelectedGenre] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredSongs, setFilteredSongs] = useState<Song[]>([]);
-  const [modalData, setModalData] = useState({
+  /*  const [modalData, setModalData] = useState({
     isOpen: false,
     selectedSong: null,
-  });
+  }); */
   const [sortOrder, setSortOrder] = useState('desc');
 
   useEffect(() => {
