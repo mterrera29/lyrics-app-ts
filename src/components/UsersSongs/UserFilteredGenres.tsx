@@ -43,7 +43,7 @@ const UserFilteredGenres = ({
           >
             <input
               type='text'
-              placeholder='Buscar artista...'
+              placeholder='Buscar género...'
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className={styles.input}
