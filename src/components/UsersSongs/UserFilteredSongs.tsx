@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import SvgIcon from '../Buttons/SvgIcon';
 import SortAZ from './SortAZ';
 import ButtonCategory from '../Buttons/ButtonCategory';
+import ButtonX from '../Buttons/ButtonX';
 
 type UserFilteredSongs = {
   songs: Song[];
@@ -58,10 +59,18 @@ const UserFilteredSongs = ({
       </div>
       {selectedAuthor && (
         <div
-          style={{ alignSelf: 'self-start', padding: '5px' }}
+          style={{
+            alignSelf: 'self-start',
+            padding: '5px',
+            display: 'flex',
+            flexDirection: 'row',
+          }}
           onClick={() => setSelectedAuthor('')}
         >
-          <ButtonCategory selected={true}>{selectedAuthor} x</ButtonCategory>
+          <ButtonX selected={false}>
+            <i className='bi bi-x'></i>
+          </ButtonX>
+          <ButtonCategory selected={true}>{selectedAuthor}</ButtonCategory>
         </div>
       )}
       {selectedGenre && (
@@ -92,6 +101,7 @@ const UserFilteredSongs = ({
                 textDecoration: 'none',
                 marginRight: '10px',
                 listStyleType: 'none',
+                width: '100%',
               }}
             >
               <section
@@ -121,13 +131,21 @@ const UserFilteredSongs = ({
                 </section>
               </section>
             </Link>
-            <SvgIcon
-              path='M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0'
-              width='26'
-              height='26'
-              className={styles.iconEdit}
-              //onClick={() => openModal(song)}
-            />
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <SvgIcon
+                path='M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0'
+                width='26'
+                height='26'
+                className={styles.iconEdit}
+                //onClick={() => openModal(song)}
+              />
+            </div>
           </li>
         ))}
       </ul>

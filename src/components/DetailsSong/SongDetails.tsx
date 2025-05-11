@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import SongContent from './SongContent';
 import { Song } from '../../types';
 import styles from './SongDetails.module.css';
+import ScrollBar from '../ScrollBar/ScrollBar';
 type SongContentProps = {
   song: Song;
 };
@@ -12,6 +13,12 @@ export default function SongDetails({ song }: SongContentProps) {
   const [fontSizeChords, setFontSizeChords] = useState(16);
   const [activeTab, setActiveTab] = useState('lyrics');
   const navigate = useNavigate();
+
+  const handleChange = (e: { target: { name: string; value: number } }) => {
+    const { name, value } = e.target;
+    //setEditedSong((prev) => ({ ...prev, [name]: value }));
+  };
+
   useEffect(() => {
     if (song) {
       if (song.fontSizeLyrics) {
@@ -22,6 +29,7 @@ export default function SongDetails({ song }: SongContentProps) {
       }
     }
   }, [song]);
+
   return (
     <div className={styles.container}>
       <button
@@ -30,7 +38,7 @@ export default function SongDetails({ song }: SongContentProps) {
         }}
         style={{
           padding: '10px 15px',
-          backgroundColor: 'var(--oscuro)',
+          backgroundColor: 'var(--purple)',
           color: 'white',
           border: 'none',
           borderRadius: '4px',
@@ -40,7 +48,15 @@ export default function SongDetails({ song }: SongContentProps) {
           right: '0',
         }}
       >
-        <i className='bi bi-reply-fill'></i>
+        <i
+          className='bi bi-reply-fill'
+          style={{
+            color: 'white',
+            width: '25px',
+            height: '25px',
+            fontSize: '16px',
+          }}
+        ></i>
       </button>
       <h2 style={{ margin: '0', marginRight: '60px' }}>{song.title}</h2>
       <h3 style={{ margin: '0', marginRight: '60px' }}>{song.artist}</h3>
@@ -68,6 +84,15 @@ export default function SongDetails({ song }: SongContentProps) {
         fontSizeLyrics={fontSizeLyrics}
         fontSizeChords={fontSizeChords}
         song={song}
+      />
+      <ScrollBar
+        setFontSizeLyrics={setFontSizeLyrics}
+        setFontSizeChords={setFontSizeChords}
+        fontSizeLyrics={fontSizeLyrics}
+        fontSizeChords={fontSizeChords}
+        song={song}
+        activeTab={activeTab}
+        handleChange={handleChange}
       />
     </div>
   );

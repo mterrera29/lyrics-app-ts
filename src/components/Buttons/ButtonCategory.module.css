@@ -13,3 +13,24 @@
   background-color: var(--purple);
   font-weight: normal;
 }
+
+.buttonX {
+  height: 28px;
+  max-width: 28px;
+  width: max-content;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 3px;
+  cursor: pointer;
+  color: white;
+  background-color: var(--purple);
+  font-weight: normal;
+  text-align: center;
+}
+.X {
+  color: white;
+}

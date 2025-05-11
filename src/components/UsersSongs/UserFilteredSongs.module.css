@@ -80,9 +80,11 @@
   justify-content: flex-start;
   margin-left: 5px;
   color: var(--fontColorBlack);
+  width: 100%;
 }
 .title {
   font-weight: bold;
+  width: 100%;
 }
 .iconEdit {
   color: var(--purple);

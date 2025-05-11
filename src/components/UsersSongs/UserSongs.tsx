@@ -91,6 +91,19 @@ export default function UserSongs({ songs }: UserSongsProps) {
         selectedButton={selectedButton}
         setSelectedButton={setSelectedButton}
       />
+      {selectedButton.id === 0 && (
+        <UserFilteredSongs
+          songs={filteredSongs}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          sortOrder={sortOrder}
+          setSortOrder={setSortOrder}
+          selectedAuthor={selectedAuthor}
+          setSelectedAuthor={setSelectedAuthor}
+          selectedGenre={selectedGenre}
+          setSelectedGenre={setSelectedGenre}
+        />
+      )}
       {selectedButton.id === 1 &&
         (selectedAuthor ? (
           <UserFilteredSongs
@@ -138,20 +151,6 @@ export default function UserSongs({ songs }: UserSongsProps) {
             setSortGenre={setSortGenre}
           />
         ))}
-
-      {selectedButton.id === 0 && (
-        <UserFilteredSongs
-          songs={filteredSongs}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          sortOrder={sortOrder}
-          setSortOrder={setSortOrder}
-          selectedAuthor={selectedAuthor}
-          setSelectedAuthor={setSelectedAuthor}
-          selectedGenre={selectedGenre}
-          setSelectedGenre={setSelectedGenre}
-        />
-      )}
     </div>
   );
 }
