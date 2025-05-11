@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import IncreaseFonts from './IncreaseFonts';
 import { Song } from '../../types';
+import styles from './ScrollBar.module.css';
 
 type ScrollBarProps = {
   song: Song;
@@ -97,12 +98,12 @@ const ScrollBar = ({
   }, []);
 
   return (
-    <div className='scroll-controls'>
+    <div className={styles['scroll-controls']}>
       <button
         onClick={isScrolling ? stopScrolling : startScrolling}
         style={{
           padding: '5px 5x',
-          backgroundColor: isScrolling ? '#dc3545' : 'var(--oscuro)',
+          backgroundColor: isScrolling ? '#dc3545' : 'var(--purple)',
           color: 'white',
           border: 'none',
           borderRadius: '4px',
@@ -138,7 +139,7 @@ const ScrollBar = ({
         value={activeTab === 'lyrics' ? scrollSpeedLyrics : scrollSpeedChords}
         onChange={handleSpeedChange}
         style={{ verticalAlign: 'middle' }}
-        className='scroll-speed-slider'
+        className={styles['scroll-speed-slider']}
       />
       <div>
         <IncreaseFonts
@@ -154,7 +155,7 @@ const ScrollBar = ({
         onClick={handleSubmit}
         style={{
           padding: '5px',
-          backgroundColor: 'var(--oscuro)',
+          backgroundColor: 'var(--purple)',
           color: 'white',
           border: 'none',
           borderRadius: '4px',

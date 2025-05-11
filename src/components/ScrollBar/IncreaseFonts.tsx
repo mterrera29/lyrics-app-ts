@@ -55,7 +55,7 @@ const IncreaseFonts = ({
           onClick={increaseFontSize}
           style={{
             padding: '5px',
-            backgroundColor: 'var(--oscuro)',
+            backgroundColor: 'var(--purple)',
             color: 'white',
             border: 'none',
             borderRadius: '4px',
@@ -75,7 +75,7 @@ const IncreaseFonts = ({
           onClick={decreaseFontSize}
           style={{
             padding: '5px',
-            backgroundColor: 'var(--oscuro)',
+            backgroundColor: 'var(--purple)',
             color: 'white',
             border: 'none',
             borderRadius: '4px',
