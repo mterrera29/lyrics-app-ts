@@ -75,13 +75,18 @@ const UserFilteredSongs = ({
       )}
       {selectedGenre && (
         <div
-          style={{ alignSelf: 'self-start', padding: '5px' }}
+          style={{
+            alignSelf: 'self-start',
+            padding: '5px',
+            display: 'flex',
+            flexDirection: 'row',
+          }}
           onClick={() => setSelectedGenre('')}
         >
           <ButtonX selected={false}>
             <i className='bi bi-x'></i>
           </ButtonX>
-          <ButtonCategory selected={true}>{selectedAuthor}</ButtonCategory>
+          <ButtonCategory selected={true}>{selectedGenre}</ButtonCategory>
         </div>
       )}
       <ul className={styles.songList}>
