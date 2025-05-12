@@ -1,4 +1,5 @@
 import { Song } from '../../types';
+import styles from './SongContent.module.css';
 
 type SongContentProps = {
   activeTab: string;
@@ -27,7 +28,7 @@ const SongContent = ({
         }px`,
         color: '#333',
       }}
-      className='custom-quill-editor'
+      className={styles['custom-quill-editor']}
     >
       {activeTab === 'lyrics' &&
         song.lyrics.split('<br>').map((paragraph, index) => (

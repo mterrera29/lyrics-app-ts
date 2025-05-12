@@ -31,7 +31,7 @@ const ScrollBar = ({
   const [scrollSpeedChords, setScrollSpeedChords] = useState(
     song?.scrollSpeedChords || (minSpeed + maxSpeed) / 3
   );
-  const scrollInterval = useRef(null);
+  const scrollInterval = useRef<ReturnType<typeof setInterval> | null>(null);
   const scrollAccumulator = useRef(0);
 
   useEffect(() => {
@@ -70,11 +70,13 @@ const ScrollBar = ({
 
   const stopScrolling = () => {
     setIsScrolling(false);
-    clearInterval(scrollInterval.current);
+    if (scrollInterval.current !== null) {
+      clearInterval(scrollInterval.current);
+    }
     scrollAccumulator.current = 0;
   };
 
-  const handleSpeedChange = (e) => {
+  const handleSpeedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newSpeed = Number(e.target.value);
 
     if (activeTab === 'lyrics') {
@@ -88,13 +90,17 @@ const ScrollBar = ({
     handleChange({ target: { name: 'scrollSpeed', value: newSpeed } });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    handleSaveEdit();
+    //handleSaveEdit();
   };
 
   useEffect(() => {
-    return () => clearInterval(scrollInterval.current);
+    return () => {
+      if (scrollInterval.current !== null) {
+        clearInterval(scrollInterval.current);
+      }
+    };
   }, []);
 
   return (

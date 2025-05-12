@@ -1,0 +1,39 @@
+.custom-quill-editor {
+  width: 100%;
+}
+.custom-quill-editor p {
+  margin: 0;
+  padding: 0;
+  line-height: 0.7 !important;
+}
+.custom-quill-editor p {
+  margin-bottom: 10px;
+}
+.custom-quill-editor br {
+  line-height: 1;
+}
+
+.ql-size-small {
+  font-size: 0.75em;
+}
+
+.ql-size-large {
+  font-size: 1.5em;
+}
+
+.ql-size-huge {
+  font-size: 2.5em;
+}
+
+@media (max-width: 768px) {
+  .custom-quill-editor {
+    width: 80vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-quill-editor {
+    width: 100%;
+    min-width: 95vw;
+  }
+}
