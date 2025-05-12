@@ -33,7 +33,7 @@ export default function UserSongs({ songs }: UserSongsProps) {
   const [genres, setGenres] = useState([
     ...new Set(songs.map((song) => song.genre)),
   ]);
-  console.log(selectedAuthor, filteredSongs);
+
   useEffect(() => {
     const filtered: Song[] = songs.filter((song) => {
       const matchesAuthor =

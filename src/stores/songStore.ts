@@ -39,6 +39,7 @@ export const useSongsStore = create<SongsStore>()(
         songById: result,
         loading: false,
       }));
+      console.log(result);
     },
   }))
 );

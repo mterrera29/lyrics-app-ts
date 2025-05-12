@@ -55,13 +55,13 @@ const IncreaseFonts = ({
           onClick={increaseFontSize}
           style={{
             padding: '5px',
-            backgroundColor: 'var(--purple)',
-            color: 'white',
+            color: 'var(--purple)',
             border: 'none',
             borderRadius: '4px',
             cursor: 'pointer',
             width: '30px',
             height: '30px',
+            fontSize: '16px',
           }}
         >
           <i className='bi bi-caret-up-fill'></i>
@@ -75,13 +75,13 @@ const IncreaseFonts = ({
           onClick={decreaseFontSize}
           style={{
             padding: '5px',
-            backgroundColor: 'var(--purple)',
-            color: 'white',
+            color: 'var(--purple)',
             border: 'none',
             borderRadius: '4px',
             cursor: 'pointer',
             width: '30px',
             height: '30px',
+            fontSize: '16px',
           }}
         >
           <i className='bi bi-caret-down-fill'></i>
