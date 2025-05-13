@@ -4,7 +4,6 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import 'quill/dist/quill.snow.css';
 import 'quill/dist/quill.bubble.css';
-import './SongForm.css';
 import { genres, modules, formats } from '../../helpers/index';
 import { useNavigate } from 'react-router-dom';
 
