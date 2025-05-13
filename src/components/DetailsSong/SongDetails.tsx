@@ -17,6 +17,7 @@ export default function SongDetails({ song, id }: SongContentProps) {
   const [fontSizeChords, setFontSizeChords] = useState(16);
   const [activeTab, setActiveTab] = useState('lyrics');
   const songEdit = useSongsStore((state) => state.songEdit);
+  const fetchData = useSongsStore((state) => state.fetchData);
   const user = useAuthStore((state) => state.user);
   const [editedSong, setEditedSong] = useState(song);
   const navigate = useNavigate();
@@ -27,7 +28,10 @@ export default function SongDetails({ song, id }: SongContentProps) {
   };
 
   const handleSaveEdit = () => {
-    songEdit(user, id, editedSong);
+    if (user) {
+      songEdit(user, id, editedSong);
+      fetchData(user);
+    }
   };
 
   useEffect(() => {

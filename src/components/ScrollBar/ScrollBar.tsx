@@ -165,18 +165,18 @@ const ScrollBar = ({
         onClick={handleSubmit}
         style={{
           padding: '5px',
-          backgroundColor: 'var(--purple)',
+          backgroundColor: loading ? 'var(--purpleOpacity2)' : 'var(--purple)',
           color: 'white',
           border: 'none',
           borderRadius: '4px',
-          cursor: 'pointer',
+          cursor: loading ? 'progress' : 'pointer',
           marginRight: '5px',
           width: '30px',
           height: '30px',
         }}
         disabled={loading}
       >
-        {!loading && <i className='bi bi-floppy-fill'></i>}
+        <i className='bi bi-floppy-fill'></i>
       </button>
     </div>
   );
