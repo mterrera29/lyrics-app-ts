@@ -8,7 +8,7 @@ import { useSongsStore } from '../../stores/songStore';
 import { useAuthStore } from '../../stores/authStore';
 type SongContentProps = {
   song: Song;
-  id: string;
+  id: string | undefined;
 };
 
 export default function SongDetails({ song, id }: SongContentProps) {
