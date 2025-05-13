@@ -12,7 +12,11 @@ type SongsStore = {
   loading: boolean;
   fetchData: (user: User) => Promise<void>;
   fetchDataById: (user: User | null, id: string | undefined) => Promise<void>;
-  songEdit: (user: User | null, id: string, editedSong: Song) => Promise<void>;
+  songEdit: (
+    user: User | null,
+    id: string | undefined,
+    editedSong: Song
+  ) => Promise<void>;
 };
 
 const initialSong: Song = {

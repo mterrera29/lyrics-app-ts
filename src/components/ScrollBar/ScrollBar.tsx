@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import IncreaseFonts from './IncreaseFonts';
 import { Song } from '../../types';
 import styles from './ScrollBar.module.css';
+import { useSongsStore } from '../../stores/songStore';
 
 type ScrollBarProps = {
   song: Song;
@@ -23,6 +24,7 @@ const ScrollBar = ({
   handleChange,
   handleSaveEdit,
 }: ScrollBarProps) => {
+  const loading = useSongsStore((state) => state.loading);
   const minSpeed = 0.1;
   const maxSpeed = 1;
 
@@ -172,8 +174,9 @@ const ScrollBar = ({
           width: '30px',
           height: '30px',
         }}
+        disabled={loading}
       >
-        <i className='bi bi-floppy-fill'></i>
+        {!loading && <i className='bi bi-floppy-fill'></i>}
       </button>
     </div>
   );
