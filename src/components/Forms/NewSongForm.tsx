@@ -214,7 +214,7 @@ function NewSongForm({ onCloseModal }) {
         // disabled={isSubmitting}
         style={{
           padding: '10px 15px',
-          backgroundColor: 'var(--oscuro)',
+          backgroundColor: 'var(--purple)',
           color: 'white',
           border: 'none',
           borderRadius: '4px',
