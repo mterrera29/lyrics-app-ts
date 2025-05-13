@@ -1,0 +1,130 @@
+.formulario > * {
+  margin-bottom: 10px;
+}
+
+.custom-quill .ql-editor {
+  font-size: var(--editor-font-size, 16px);
+  line-height: var(--editor-line-height, 1.5);
+}
+
+.tabs {
+  display: flex;
+  border-bottom: 2px solid #ddd;
+  position: relative;
+  top: 1px;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 8px 10px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-bottom: none;
+  font-size: 14px;
+  line-height: 1.2;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.tab:first-child {
+  border-radius: 8px 0 0 0;
+}
+
+.tab:last-child {
+  border-radius: 0 8px 0 0;
+}
+
+.tab.active {
+  background-color: white;
+  color: var(--oscuro);
+  font-weight: bold;
+  color: var(--oscuro);
+}
+
+.tab:not(.active) {
+  color: #888;
+}
+
+.tab:hover {
+  background-color: #eaeaea;
+}
+
+.custom-quill {
+  border-radius: 0 0 8px 8px;
+  margin-top: -1px;
+}
+
+.scroll-speed-slider {
+  width: 200px;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.scroll-speed-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--purple);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.scroll-speed-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--purple);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.scroll-speed-slider {
+  touch-action: none;
+}
+
+@media (max-width: 768px) {
+  .scroll-speed-slider {
+    width: 150px;
+    height: 5px;
+  }
+
+  .scroll-speed-slider::-webkit-slider-thumb,
+  .scroll-speed-slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+  }
+  .custom-quill-editor {
+    width: 80vw;
+  }
+  .container {
+    width: 85%;
+    padding: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .scroll-speed-slider {
+    width: 90px;
+  }
+
+  .scroll-speed-slider::-webkit-slider-thumb,
+  .scroll-speed-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+  }
+  .custom-quill-editor {
+    width: 100%;
+    min-width: 95vw;
+  }
+  .container {
+    width: 100%;
+    padding: 5px;
+  }
+}

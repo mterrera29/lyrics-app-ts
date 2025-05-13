@@ -7,7 +7,6 @@ function SongDetailsPage() {
   const songs = useSongsStore((state) => state.songs);
   const filterSong = songs.filter((song) => song.id === id);
   const song = filterSong[0];
-  console.log(songs);
 
   if (!song) {
     return (
