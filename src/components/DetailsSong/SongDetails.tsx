@@ -4,19 +4,30 @@ import SongContent from './SongContent';
 import { Song } from '../../types';
 import styles from './SongDetails.module.css';
 import ScrollBar from '../ScrollBar/ScrollBar';
+import { useSongsStore } from '../../stores/songStore';
+import { useAuthStore } from '../../stores/authStore';
 type SongContentProps = {
   song: Song;
+  id: string;
 };
 
-export default function SongDetails({ song }: SongContentProps) {
+export default function SongDetails({ song, id }: SongContentProps) {
+  /// ACAAA HACER UN STATE DE SONG , METERLE A ESE SONG EL CAMBIO DEL HABDLE CHANGE, Y AHI, METER LA FUNCION DEL STATE
   const [fontSizeLyrics, setFontSizeLyrics] = useState(16);
   const [fontSizeChords, setFontSizeChords] = useState(16);
   const [activeTab, setActiveTab] = useState('lyrics');
+  const songEdit = useSongsStore((state) => state.songEdit);
+  const user = useAuthStore((state) => state.user);
+  const [editedSong, setEditedSong] = useState(song);
   const navigate = useNavigate();
 
   const handleChange = (e: { target: { name: string; value: number } }) => {
     const { name, value } = e.target;
-    //setEditedSong((prev) => ({ ...prev, [name]: value }));
+    setEditedSong((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSaveEdit = () => {
+    songEdit(user, id, editedSong);
   };
 
   useEffect(() => {
@@ -93,6 +104,7 @@ export default function SongDetails({ song }: SongContentProps) {
         song={song}
         activeTab={activeTab}
         handleChange={handleChange}
+        handleSaveEdit={handleSaveEdit}
       />
     </div>
   );

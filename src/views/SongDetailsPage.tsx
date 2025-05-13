@@ -37,7 +37,7 @@ function SongDetailsPage() {
         marginBottom: '10px',
       }}
     >
-      <SongDetails song={song} />
+      <SongDetails song={song} id={id} />
     </div>
   );
 }

@@ -11,6 +11,7 @@ type ScrollBarProps = {
   fontSizeChords: number;
   activeTab: string;
   handleChange: (e: { target: { name: string; value: number } }) => void;
+  handleSaveEdit: () => void;
 };
 const ScrollBar = ({
   song,
@@ -20,6 +21,7 @@ const ScrollBar = ({
   fontSizeChords,
   activeTab,
   handleChange,
+  handleSaveEdit,
 }: ScrollBarProps) => {
   const minSpeed = 0.1;
   const maxSpeed = 1;
@@ -92,7 +94,7 @@ const ScrollBar = ({
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    //handleSaveEdit();
+    handleSaveEdit();
   };
 
   useEffect(() => {
