@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import Avatar from './Avatar';
 import styles from './Header.module.css';
 import Modal from '../Modal/Modal';
+import NewSongForm from '../Forms/NewSongForm';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -105,7 +106,7 @@ const Header = () => {
             &times;
           </button>
           <h2 style={{ color: 'var(--oscuroLetra)' }}>Agregar Nueva Canción</h2>
-          {/* <SongForm onCloseModal={() => setIsModalOpen(false)} /> */}
+          <NewSongForm onCloseModal={() => setIsModalOpen(false)} />
         </Modal>
       )}
     </div>

@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import styles from './NewSongForm.module.css';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import ReactQuill from 'react-quill-new';
+import 'react-quill-new/dist/quill.snow.css';
 import 'quill/dist/quill.snow.css';
 import 'quill/dist/quill.bubble.css';
 import { genres, modules, formats } from '../../helpers/index';
 import { useNavigate } from 'react-router-dom';
 
-function NewSongForm({ onCloseModal }) {
+type NewSongProps = {
+  onCloseModal: () => void;
+};
+
+function NewSongForm({ onCloseModal }: NewSongProps) {
   const [artist, setArtist] = useState('');
   const [title, setTitle] = useState('');
   const [lyrics, setLyrics] = useState('');
