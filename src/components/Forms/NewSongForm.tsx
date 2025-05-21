@@ -62,7 +62,10 @@ function NewSongForm({ onCloseModal }: NewSongProps) {
       };
 
       try {
-        createNewSong(user, newSong);
+        if (user) {
+          createNewSong(user, newSong);
+          fetchData(user);
+        }
         setArtist('');
         setTitle('');
         setLyrics('');
