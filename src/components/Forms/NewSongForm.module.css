@@ -37,9 +37,8 @@
 
 .tab.active {
   background-color: white;
-  color: var(--oscuro);
+  color: var(--purple);
   font-weight: bold;
-  color: var(--oscuro);
 }
 
 .tab:not(.active) {

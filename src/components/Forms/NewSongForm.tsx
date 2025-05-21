@@ -6,12 +6,17 @@ import 'quill/dist/quill.snow.css';
 import 'quill/dist/quill.bubble.css';
 import { genres, modules, formats } from '../../helpers/index';
 import { useNavigate } from 'react-router-dom';
+import { useSongsStore } from '../../stores/songStore';
+import { useAuthStore } from '../../stores/authStore';
 
 type NewSongProps = {
   onCloseModal: () => void;
 };
 
 function NewSongForm({ onCloseModal }: NewSongProps) {
+  const fetchData = useSongsStore((state) => state.fetchData);
+  const createNewSong = useSongsStore((state) => state.createNewSong);
+  const user = useAuthStore((state) => state.user);
   const [artist, setArtist] = useState('');
   const [title, setTitle] = useState('');
   const [lyrics, setLyrics] = useState('');
@@ -57,7 +62,7 @@ function NewSongForm({ onCloseModal }: NewSongProps) {
       };
 
       try {
-        //createSong(newSong);
+        createNewSong(user, newSong);
         setArtist('');
         setTitle('');
         setLyrics('');
