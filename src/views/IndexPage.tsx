@@ -1,9 +1,11 @@
 import { useSongsStore } from '../stores/songStore';
 import UserSongs from '../components/UsersSongs/UserSongs';
+import Spinner from '../components/Spinner/Spinner';
 
 export default function IndexPage() {
   const songs = useSongsStore((state) => state.songs);
   const loading = useSongsStore((state) => state.loading);
+  console.log(songs);
   return (
     <div
       style={{
@@ -15,7 +17,7 @@ export default function IndexPage() {
         marginBottom: '10px',
       }}
     >
-      {loading ? <h3>Cargando</h3> : <UserSongs songs={songs} />}
+      {loading ? <Spinner /> : <UserSongs songs={songs} />}
     </div>
   );
 }

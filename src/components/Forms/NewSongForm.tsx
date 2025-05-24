@@ -167,6 +167,7 @@ function NewSongForm({ onCloseModal }: NewSongProps) {
               formats={formats}
               theme='snow'
               placeholder='Escribe las letras aquí...'
+              className={styles['ql-editor']}
             />
           )}
 
@@ -178,6 +179,7 @@ function NewSongForm({ onCloseModal }: NewSongProps) {
               formats={formats}
               theme='snow'
               placeholder='Escribe los acordes aquí...'
+              className={styles['ql-editor']}
             />
           )}
         </div>

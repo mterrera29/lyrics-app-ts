@@ -4,7 +4,7 @@
 .custom-quill-editor p {
   margin: 0;
   padding: 0;
-  line-height: 0.7 !important;
+  line-height: 1 !important;
 }
 .custom-quill-editor p {
   margin-bottom: 10px;
