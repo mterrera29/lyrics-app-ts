@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './NewSongForm.module.css';
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
@@ -30,6 +30,17 @@ function NewSongForm({ onCloseModal }: NewSongProps) {
   const [scrollSpeedChords, setScrollSpeedChords] = useState(0.5);
   const [activeTab, setActiveTab] = useState('lyrics');
   const navigate = useNavigate();
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.style.setProperty('--editor-font-size', `${fontSize}px`);
+      ref.current.style.setProperty(
+        '--editor-line-height',
+        `${fontSize * 1.5}px`
+      );
+    }
+  }, [fontSize]);
 
   const handleSpeedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const speed = Number(e.target.value);
@@ -99,7 +110,7 @@ function NewSongForm({ onCloseModal }: NewSongProps) {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         required
-        style={{ marginRight: '10px' }}
+        className={styles.formInput}
       />
       <p>Artista</p>
       <input
@@ -108,7 +119,7 @@ function NewSongForm({ onCloseModal }: NewSongProps) {
         value={artist}
         onChange={(e) => setArtist(e.target.value)}
         required
-        style={{ marginRight: '10px' }}
+        className={styles.formInput}
       />
       <p>Género</p>
       <select
@@ -116,6 +127,7 @@ function NewSongForm({ onCloseModal }: NewSongProps) {
         onChange={(e) => setGenre(e.target.value)}
         style={{ marginBottom: '10px' }}
         required
+        className={styles.formSelect}
       >
         <option value='Ninguno'>Seleccionar Género</option>
         {genres.map((genre, index) => (
@@ -146,13 +158,7 @@ function NewSongForm({ onCloseModal }: NewSongProps) {
           </div>
         </div>
 
-        <div
-          className={styles['custom-quill']}
-          style={{
-            '--editor-font-size': `${fontSize}px`,
-            '--editor-line-height': `${fontSize * 1.5}px`,
-          }}
-        >
+        <div className={styles['custom-quill']} ref={ref}>
           {activeTab === 'lyrics' && (
             <ReactQuill
               value={lyrics}

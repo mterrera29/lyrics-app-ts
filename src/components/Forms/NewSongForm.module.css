@@ -88,6 +88,19 @@
   touch-action: none;
 }
 
+.formInput {
+  font-size: 16px;
+  padding: 5px;
+  font-family: 'Inter', sans-serif;
+  border-radius: 5px;
+}
+
+.formSelect {
+  font-size: 16px;
+  padding: 5px;
+  font-family: 'Inter', sans-serif;
+}
+
 @media (max-width: 768px) {
   .scroll-speed-slider {
     width: 150px;
