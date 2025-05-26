@@ -84,6 +84,10 @@ export const useSongsStore = create<SongsStore>()(
       const result = await songCreate(user, newSong);
       set(() => ({
         songById: result,
+      }));
+      const resultSongs = await fetchSongs(user);
+      set(() => ({
+        songs: resultSongs || [],
         loading: false,
       }));
     },
