@@ -12,7 +12,6 @@ type SongContentProps = {
 };
 
 export default function SongDetails({ song, id }: SongContentProps) {
-  /// ACAAA HACER UN STATE DE SONG , METERLE A ESE SONG EL CAMBIO DEL HABDLE CHANGE, Y AHI, METER LA FUNCION DEL STATE
   const [fontSizeLyrics, setFontSizeLyrics] = useState(16);
   const [fontSizeChords, setFontSizeChords] = useState(16);
   const [activeTab, setActiveTab] = useState('lyrics');
