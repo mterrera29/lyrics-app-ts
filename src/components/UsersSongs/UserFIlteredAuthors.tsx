@@ -1,7 +1,12 @@
+import { useEffect, useState } from 'react';
 import styles from './UserFilteredSongs.module.css';
 import imgIcon from '../../assets/jazz.png';
 import SvgIcon from '../Buttons/SvgIcon';
 import SortAZ from './SortAZ';
+import {
+  getAccessToken,
+  fetchArtistImage,
+} from '../../services/spotifyService';
 
 type UserFilteredAuthorsProps = {
   artist: string[];
@@ -20,9 +25,46 @@ const UserFilteredAuthors = ({
   sortArtist,
   setSortArtist,
 }: UserFilteredAuthorsProps) => {
+  const [artistImages, setArtistImages] = useState<{
+    [artist: string]: string;
+  }>(() => {
+    const cache = localStorage.getItem('artistImages');
+    return cache ? JSON.parse(cache) : {};
+  });
+
+  useEffect(() => {
+    const loadImages = async () => {
+      const token = await getAccessToken();
+      const cache = localStorage.getItem('artistImages');
+      const cachedImages = cache ? JSON.parse(cache) : {};
+      const uniqueArtists = [...new Set(artist)];
+      const newImages: { [artist: string]: string } = { ...cachedImages };
+      let updated = false;
+
+      for (const artistName of uniqueArtists) {
+        if (!cachedImages[artistName]) {
+          const image = await fetchArtistImage(artistName, token);
+          if (image) {
+            newImages[artistName] = image;
+            updated = true;
+          }
+        }
+      }
+
+      if (updated) {
+        localStorage.setItem('artistImages', JSON.stringify(newImages));
+      }
+
+      setArtistImages(newImages);
+    };
+
+    if (artist.length > 0) loadImages();
+  }, [artist]);
+
   const handleClick = (author: string) => {
     setSelectedAuthor(author);
   };
+
   return (
     <section>
       <div
@@ -35,12 +77,7 @@ const UserFilteredAuthors = ({
         }}
       >
         <div className={styles.searchQuery}>
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          >
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <input
               type='text'
               placeholder='Buscar artista...'
@@ -52,19 +89,19 @@ const UserFilteredAuthors = ({
         </div>
         <SortAZ setSort={setSortArtist} sort={sortArtist} />
       </div>
+
       <ul className={styles.songList}>
         {artist.map((author, index) => (
           <li
+            key={index}
+            className={styles.song}
             style={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
               padding: '5px',
-              textDecoration: 'none',
               listStyleType: 'none',
             }}
-            key={index}
-            className={styles.song}
             onClick={() => handleClick(author)}
           >
             <section
@@ -86,7 +123,11 @@ const UserFilteredAuthors = ({
                   <path d='m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393' />
                 </svg>
                 <div className={styles.backImg}></div>
-                <img src={imgIcon} alt='' className={styles.imgIcon} />
+                <img
+                  src={artistImages[author] || imgIcon}
+                  alt={author}
+                  className={styles.imgIcon}
+                />
               </div>
               <section className={styles.info}>
                 <p className={styles.title}>{author}</p>
@@ -97,7 +138,6 @@ const UserFilteredAuthors = ({
               width='26'
               height='26'
               className={styles.iconEdit}
-              //onClick={() => openModal(song)}
             />
           </li>
         ))}
