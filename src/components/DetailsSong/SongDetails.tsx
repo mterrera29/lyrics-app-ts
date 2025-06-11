@@ -23,19 +23,17 @@ export default function SongDetails({ song, id }: SongContentProps) {
   const [editedSong, setEditedSong] = useState(song);
   const navigate = useNavigate();
 
-  const [artistImages, setArtistImages] = useState<{
+  const [artistImages] = useState<{
     [artist: string]: string;
   }>(() => {
     const cache = localStorage.getItem('artistImages');
     return cache ? JSON.parse(cache) : {};
   });
 
-  const [trackImages, setTrackImages] = useState<{ [title: string]: string }>(
-    () => {
-      const cache = localStorage.getItem('trackImages');
-      return cache ? JSON.parse(cache) : {};
-    }
-  );
+  const [trackImages] = useState<{ [title: string]: string }>(() => {
+    const cache = localStorage.getItem('trackImages');
+    return cache ? JSON.parse(cache) : {};
+  });
 
   const handleChange = (e: { target: { name: string; value: number } }) => {
     const { name, value } = e.target;
