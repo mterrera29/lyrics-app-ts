@@ -12,9 +12,11 @@ export default function IndexPage() {
 
   useEffect(() => {
     if (user) {
-      fetchData(user);
+      if (!songs) {
+        fetchData(user);
+      }
     }
-  }, [user, fetchData]);
+  }, [user, fetchData, songs]);
 
   return (
     <div
