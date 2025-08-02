@@ -7,6 +7,7 @@ import ScrollBar from '../ScrollBar/ScrollBar';
 import { useSongsStore } from '../../stores/songStore';
 import { useAuthStore } from '../../stores/authStore';
 import imgIcon from '../../assets/jazz.png';
+import { useWakeLock } from '../../hooks/useWakeLock';
 
 type SongContentProps = {
   song: Song;
@@ -22,6 +23,8 @@ export default function SongDetails({ song, id }: SongContentProps) {
   const user = useAuthStore((state) => state.user);
   const [editedSong, setEditedSong] = useState(song);
   const navigate = useNavigate();
+
+  useWakeLock();
 
   const [artistImages] = useState<{
     [artist: string]: string;
@@ -84,7 +87,6 @@ export default function SongDetails({ song, id }: SongContentProps) {
         <div style={{ marginLeft: '10px', width: '100%' }}>
           <h2 style={{ margin: '0', marginRight: '60px' }}>{song.title}</h2>
           <h3 style={{ margin: '0', marginRight: '60px' }}>{song.artist}</h3>
-          <p style={{ margin: '0', marginRight: '60px' }}>{song.genre}</p>
         </div>
         <button
           onClick={() => {
