@@ -46,7 +46,6 @@ export default function SongDetails({ song, id }: SongContentProps) {
   const handleSaveEdit = () => {
     if (user) {
       songEdit(user, id, editedSong);
-      fetchData(user);
     }
   };
 
