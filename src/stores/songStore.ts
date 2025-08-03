@@ -24,7 +24,7 @@ type SongsStore = {
   ) => Promise<void>;
 };
 
-const initialSong: Song = {
+export const initialSong: Song = {
   _id: '',
   id: '',
   artist: '',

@@ -4,11 +4,13 @@ import Avatar from './Avatar';
 import styles from './Header.module.css';
 import Modal from '../Modal/Modal';
 import NewSongForm from '../Forms/NewSongForm';
+import { initialSong } from '../../stores/songStore';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
+  const song = initialSong;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -106,7 +108,11 @@ const Header = () => {
             &times;
           </button>
           <h2 style={{ color: 'var(--oscuroLetra)' }}>Agregar Nueva Canción</h2>
-          <NewSongForm onCloseModal={() => setIsModalOpen(false)} />
+          <NewSongForm
+            onCloseModal={() => setIsModalOpen(false)}
+            isSongEdit={false}
+            song={song}
+          />
         </Modal>
       )}
     </div>

@@ -8,6 +8,8 @@ import { useSongsStore } from '../../stores/songStore';
 import { useAuthStore } from '../../stores/authStore';
 import imgIcon from '../../assets/jazz.png';
 import { useWakeLock } from '../../hooks/useWakeLock';
+import Modal from '../Modal/Modal';
+import NewSongForm from '../Forms/NewSongForm';
 
 type SongContentProps = {
   song: Song;
@@ -19,9 +21,11 @@ export default function SongDetails({ song, id }: SongContentProps) {
   const [fontSizeChords, setFontSizeChords] = useState(16);
   const [activeTab, setActiveTab] = useState('lyrics');
   const songEdit = useSongsStore((state) => state.songEdit);
-  const fetchData = useSongsStore((state) => state.fetchData);
+  const fetchDataById = useSongsStore((state) => state.fetchDataById);
   const user = useAuthStore((state) => state.user);
   const [editedSong, setEditedSong] = useState(song);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const navigate = useNavigate();
 
   useWakeLock();
@@ -89,6 +93,33 @@ export default function SongDetails({ song, id }: SongContentProps) {
         </div>
         <button
           onClick={() => {
+            setIsModalOpen(true);
+            fetchDataById(user, id);
+          }}
+          style={{
+            padding: '10px 15px',
+            backgroundColor: 'var(--purple)',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            width: '50px',
+            justifySelf: 'flex-end',
+            alignSelf: 'center',
+          }}
+        >
+          <i
+            className='bi bi-reply-fill'
+            style={{
+              color: 'white',
+              width: '25px',
+              height: '25px',
+              fontSize: '16px',
+            }}
+          ></i>
+        </button>
+        <button
+          onClick={() => {
             navigate(-1);
           }}
           style={{
@@ -148,6 +179,22 @@ export default function SongDetails({ song, id }: SongContentProps) {
         handleChange={handleChange}
         handleSaveEdit={handleSaveEdit}
       />
+      {isModalOpen && (
+        <Modal>
+          <button
+            className={styles['modal-close']}
+            onClick={() => setIsModalOpen(false)}
+          >
+            &times;
+          </button>
+          <h2 style={{ color: 'var(--oscuroLetra)' }}>Agregar Nueva Canción</h2>
+          <NewSongForm
+            onCloseModal={() => setIsModalOpen(false)}
+            isSongEdit={true}
+            song={song}
+          />
+        </Modal>
+      )}
     </div>
   );
 }

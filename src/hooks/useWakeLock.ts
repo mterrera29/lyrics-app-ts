@@ -1,6 +1,5 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 
-// Solo definimos tipos auxiliares si no existen
 type WakeLockType = 'screen';
 
 interface WakeLock {
@@ -12,7 +11,7 @@ type MaybeWakeLock = {
 };
 
 export function useWakeLock() {
-  const [wakeLock, setWakeLock] = useState<WakeLockSentinel | null>(null);
+  const wakeLockRef = useRef<WakeLockSentinel | null>(null);
 
   const requestWakeLock = useCallback(async () => {
     try {
@@ -20,10 +19,9 @@ export function useWakeLock() {
 
       if (nav.wakeLock?.request) {
         const lock = await nav.wakeLock.request('screen');
-        setWakeLock(lock);
+        wakeLockRef.current = lock;
         console.log('🔒 Wake Lock activado');
 
-        // TypeScript espera una función con argumentos (ev), por eso lo dejamos opcional
         lock.onrelease = () => {
           console.log('🔓 Wake Lock liberado');
         };
@@ -36,12 +34,13 @@ export function useWakeLock() {
   }, []);
 
   const releaseWakeLock = useCallback(async () => {
-    if (wakeLock) {
-      await wakeLock.release();
-      setWakeLock(null);
+    const currentLock = wakeLockRef.current;
+    if (currentLock) {
+      await currentLock.release();
+      wakeLockRef.current = null;
       console.log('🔓 Wake Lock desactivado');
     }
-  }, [wakeLock]);
+  }, []);
 
   useEffect(() => {
     requestWakeLock();
@@ -60,5 +59,5 @@ export function useWakeLock() {
     };
   }, [requestWakeLock, releaseWakeLock]);
 
-  return { requestWakeLock, releaseWakeLock, wakeLock };
+  return { requestWakeLock, releaseWakeLock };
 }

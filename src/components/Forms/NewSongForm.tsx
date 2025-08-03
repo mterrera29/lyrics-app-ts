@@ -8,29 +8,37 @@ import { genres, modules, formats } from '../../helpers/index';
 import { useNavigate } from 'react-router-dom';
 import { useSongsStore } from '../../stores/songStore';
 import { useAuthStore } from '../../stores/authStore';
+import { Song } from '../../types';
 
 type NewSongProps = {
   onCloseModal: () => void;
+  isSongEdit: boolean;
+  song: Song;
 };
 
-function NewSongForm({ onCloseModal }: NewSongProps) {
+function NewSongForm({ onCloseModal, isSongEdit, song }: NewSongProps) {
   const fetchData = useSongsStore((state) => state.fetchData);
   const createNewSong = useSongsStore((state) => state.createNewSong);
   const user = useAuthStore((state) => state.user);
-  const [artist, setArtist] = useState('');
-  const [title, setTitle] = useState('');
-  const [lyrics, setLyrics] = useState('');
-  const [genre, setGenre] = useState('Ninguno');
-  const [chords, setChords] = useState('');
+  const isSong = isSongEdit ? true : false;
+  const [editedSong, setEditedSong] = useState(song);
+  const artist = editedSong.artist;
+  const title = editedSong.title;
+  const [lyrics, setLyrics] = useState(editedSong.lyrics);
+  const genre = editedSong.genre;
+  const [chords, setChords] = useState(editedSong.chords);
   const [scrollSpeed, setScrollSpeed] = useState(0.5);
   const [fontSize, setFontSize] = useState(16);
-  const [fontSizeLyrics, setFontSizeLyrics] = useState(16);
-  const [fontSizeChords, setFontSizeChords] = useState(16);
-  const [scrollSpeedLyrics, setScrollSpeedLyrics] = useState(0.5);
-  const [scrollSpeedChords, setScrollSpeedChords] = useState(0.5);
+  const fontSizeLyrics = editedSong.fontSizeLyrics;
+  const fontSizeChords = editedSong.fontSizeChords;
+  const scrollSpeedLyrics = editedSong.scrollSpeedLyrics;
+  const scrollSpeedChords = editedSong.scrollSpeedChords;
+
   const [activeTab, setActiveTab] = useState('lyrics');
   const navigate = useNavigate();
   const ref = useRef<HTMLDivElement>(null);
+  const songEdit = useSongsStore((state) => state.songEdit);
+  console.log(editedSong);
 
   useEffect(() => {
     if (ref.current) {
@@ -42,22 +50,54 @@ function NewSongForm({ onCloseModal }: NewSongProps) {
     }
   }, [fontSize]);
 
+  useEffect(() => {
+    setEditedSong((prev) => ({ ...prev, lyrics: lyrics }));
+    setEditedSong((prev) => ({ ...prev, chords: chords }));
+  }, [lyrics, chords]);
+
+  const handleChange = (e: {
+    target: { name: string; value: number | string };
+  }) => {
+    const { name, value } = e.target;
+    setEditedSong((prev) => ({ ...prev, [name]: value }));
+  };
+
   const handleSpeedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const speed = Number(e.target.value);
     setScrollSpeed(speed);
-    setScrollSpeedLyrics(speed);
-    setScrollSpeedChords(speed);
+    handleChange({
+      target: { name: 'scrollSpeedLyrics', value: e.target.value },
+    });
+    handleChange({
+      target: { name: 'scrollSpeedChords', value: e.target.value },
+    });
   };
 
   const handleFontSizeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const size = Number(e.target.value);
     setFontSize(size);
-    setFontSizeLyrics(size);
-    setFontSizeChords(size);
+    handleChange({
+      target: { name: 'scrollSpeedLyrics', value: size },
+    });
+    handleChange({
+      target: { name: 'scrollSpeedChords', value: size },
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setEditedSong((prev) => ({
+      ...prev,
+      artist,
+      title,
+      lyrics,
+      genre,
+      chords,
+      scrollSpeedLyrics,
+      scrollSpeedChords,
+      fontSizeLyrics,
+      fontSizeChords,
+    }));
 
     if (artist && title && lyrics && genre) {
       const newSong = {
@@ -73,15 +113,12 @@ function NewSongForm({ onCloseModal }: NewSongProps) {
       };
 
       try {
-        if (user) {
+        if (user && isSong) {
+          songEdit(user, song.id, editedSong);
+        } else if (user) {
           createNewSong(user, newSong);
           fetchData(user);
         }
-        setArtist('');
-        setTitle('');
-        setLyrics('');
-        setGenre('');
-        setChords('');
         setScrollSpeed(0.5);
         setFontSize(16);
         navigate('/');
@@ -108,7 +145,9 @@ function NewSongForm({ onCloseModal }: NewSongProps) {
         type='text'
         placeholder='Título'
         value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={(e) =>
+          handleChange({ target: { name: 'title', value: e.target.value } })
+        }
         required
         className={styles.formInput}
       />
@@ -117,14 +156,18 @@ function NewSongForm({ onCloseModal }: NewSongProps) {
         type='text'
         placeholder='Artista'
         value={artist}
-        onChange={(e) => setArtist(e.target.value)}
+        onChange={(e) =>
+          handleChange({ target: { name: 'artist', value: e.target.value } })
+        }
         required
         className={styles.formInput}
       />
       <p>Género</p>
       <select
         value={genre}
-        onChange={(e) => setGenre(e.target.value)}
+        onChange={(e) =>
+          handleChange({ target: { name: 'genre', value: e.target.value } })
+        }
         style={{ marginBottom: '10px' }}
         required
         className={styles.formSelect}
@@ -241,7 +284,7 @@ function NewSongForm({ onCloseModal }: NewSongProps) {
           marginTop: '10px',
         }}
       >
-        {'Crear'}
+        {isSong ? 'Editar' : 'Crear'}
       </button>
     </form>
   );
