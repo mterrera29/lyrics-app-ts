@@ -109,7 +109,7 @@ export default function SongDetails({ song, id }: SongContentProps) {
           }}
         >
           <i
-            className='bi bi-reply-fill'
+            className='bi bi-pencil-square'
             style={{
               color: 'white',
               width: '25px',
