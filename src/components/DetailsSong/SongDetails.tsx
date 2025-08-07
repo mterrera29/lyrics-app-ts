@@ -97,7 +97,8 @@ export default function SongDetails({ song, id }: SongContentProps) {
             fetchDataById(user, id);
           }}
           style={{
-            padding: '10px 15px',
+            padding: '5px 8px',
+            marginLeft: '10px',
             backgroundColor: 'var(--purple)',
             color: 'white',
             border: 'none',
@@ -105,7 +106,7 @@ export default function SongDetails({ song, id }: SongContentProps) {
             cursor: 'pointer',
             width: '50px',
             justifySelf: 'flex-end',
-            alignSelf: 'center',
+            alignSelf: 'flex-start',
           }}
         >
           <i
@@ -123,7 +124,8 @@ export default function SongDetails({ song, id }: SongContentProps) {
             navigate(-1);
           }}
           style={{
-            padding: '10px 15px',
+            padding: '5px 8px',
+            marginLeft: '10px',
             backgroundColor: 'var(--purple)',
             color: 'white',
             border: 'none',
@@ -131,7 +133,7 @@ export default function SongDetails({ song, id }: SongContentProps) {
             cursor: 'pointer',
             width: '50px',
             justifySelf: 'flex-end',
-            alignSelf: 'center',
+            alignSelf: 'flex-start',
           }}
         >
           <i
