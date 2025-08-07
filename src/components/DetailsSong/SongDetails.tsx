@@ -66,7 +66,9 @@ export default function SongDetails({ song, id }: SongContentProps) {
 
   return (
     <div className={styles.container}>
-      <div style={{ display: 'flex', flexDirection: 'row' }}>
+      <div
+        style={{ display: 'flex', flexDirection: 'row', marginBottom: '5px' }}
+      >
         <div className={styles.playImgIcon}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
@@ -91,6 +93,21 @@ export default function SongDetails({ song, id }: SongContentProps) {
           <h2 style={{ margin: '0', marginRight: '60px' }}>{song.title}</h2>
           <h3 style={{ margin: '0', marginRight: '60px' }}>{song.artist}</h3>
         </div>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          style={{
+            padding: '5px 8px',
+            marginLeft: '10px',
+            backgroundColor: 'var(--purple)',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            width: '50px',
+          }}
+        >
+          <i className='bi bi-trash'></i>
+        </button>
         <button
           onClick={() => {
             setIsModalOpen(true);
