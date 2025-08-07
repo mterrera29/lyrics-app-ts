@@ -165,6 +165,33 @@
   z-index: 9;
 }
 
+.modal-close {
+  background-color: transparent;
+  color: #333;
+  font-size: 28px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  padding: 5px;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.modal-close:hover {
+  color: #e74c3c;
+  transform: scale(1.1);
+}
+
+.modal-close:focus {
+  outline: none;
+}
+
+.modal-close:active {
+  transform: scale(0.95);
+}
+
 @media (max-width: 768px) {
   .scroll-speed-slider {
     width: 150px;

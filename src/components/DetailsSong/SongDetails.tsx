@@ -23,6 +23,7 @@ export default function SongDetails({ song, id }: SongContentProps) {
   const songEdit = useSongsStore((state) => state.songEdit);
   const fetchDataById = useSongsStore((state) => state.fetchDataById);
   const user = useAuthStore((state) => state.user);
+  const songDelete = useSongsStore((state) => state.songDelete);
   const [editedSong, setEditedSong] = useState(song);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
@@ -217,7 +218,7 @@ export default function SongDetails({ song, id }: SongContentProps) {
           >
             &times;
           </button>
-          <h2 style={{ color: 'var(--oscuroLetra)' }}>Agregar Nueva Canción</h2>
+          <h2 style={{ color: 'var(--oscuroLetra)' }}>Editar {song.title} </h2>
           <NewSongForm
             onCloseModal={() => setIsModalOpen(false)}
             isSongEdit={true}
@@ -234,7 +235,7 @@ export default function SongDetails({ song, id }: SongContentProps) {
           )}
           <div style={{ marginTop: '20px' }}>
             <button
-              onClick={() => handleDeleteClick()}
+              onClick={() => songDelete(user, id)}
               style={{
                 padding: '10px 15px',
                 backgroundColor: 'red',

@@ -6,6 +6,7 @@ import { User } from 'firebase/auth';
 import { fetchSongById } from '../services/songIdService';
 import { songEditById } from '../services/songEditById';
 import { songCreate } from '../services/songCreateService';
+import { songDeleteById } from '../services/songDeleteById';
 
 type SongsStore = {
   songs: Song[];
@@ -18,6 +19,7 @@ type SongsStore = {
     id: string | undefined,
     editedSong: Song
   ) => Promise<void>;
+  songDelete: (user: User | null, id: string | undefined) => Promise<void>;
   createNewSong: (
     user: User | null,
     newSong: Omit<Song, '_id' | 'id'>
@@ -71,6 +73,22 @@ export const useSongsStore = create<SongsStore>()(
       }));
       if (!user) return;
       const result = await songEditById(user, id, editedSong);
+      set(() => ({
+        songById: result,
+      }));
+      const resultSongs = await fetchSongs(user);
+      set(() => ({
+        songs: resultSongs || [],
+        loading: false,
+      }));
+    },
+
+    songDelete: async (user, id) => {
+      set(() => ({
+        loading: true,
+      }));
+      if (!user) return;
+      const result = await songDeleteById(user, id);
       set(() => ({
         songById: result,
       }));
