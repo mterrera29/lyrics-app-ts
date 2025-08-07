@@ -25,6 +25,7 @@ export default function SongDetails({ song, id }: SongContentProps) {
   const user = useAuthStore((state) => state.user);
   const [editedSong, setEditedSong] = useState(song);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -94,7 +95,7 @@ export default function SongDetails({ song, id }: SongContentProps) {
           <h3 style={{ margin: '0', marginRight: '60px' }}>{song.artist}</h3>
         </div>
         <button
-          onClick={() => setIsModalOpen(true)}
+          onClick={() => setIsModalDeleteOpen(true)}
           style={{
             padding: '5px 8px',
             marginLeft: '10px',
@@ -104,9 +105,19 @@ export default function SongDetails({ song, id }: SongContentProps) {
             borderRadius: '4px',
             cursor: 'pointer',
             width: '50px',
+            justifySelf: 'flex-end',
+            alignSelf: 'flex-start',
           }}
         >
-          <i className='bi bi-trash'></i>
+          <i
+            className='bi bi-trash'
+            style={{
+              color: 'white',
+              width: '25px',
+              height: '25px',
+              fontSize: '16px',
+            }}
+          ></i>
         </button>
         <button
           onClick={() => {
@@ -212,6 +223,44 @@ export default function SongDetails({ song, id }: SongContentProps) {
             isSongEdit={true}
             song={song}
           />
+        </Modal>
+      )}
+      {isModalDeleteOpen && (
+        <Modal>
+          {song.title ? (
+            <h3>{`¿Deseas eliminar la canción "${song.title}"?`}</h3>
+          ) : (
+            <h3>¿Estás seguro?</h3>
+          )}
+          <div style={{ marginTop: '20px' }}>
+            <button
+              onClick={() => handleDeleteClick()}
+              style={{
+                padding: '10px 15px',
+                backgroundColor: 'red',
+                color: 'white',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                marginRight: '10px',
+              }}
+            >
+              Eliminar
+            </button>
+            <button
+              onClick={() => setIsModalDeleteOpen(false)}
+              style={{
+                padding: '10px 15px',
+                backgroundColor: 'var(--purple)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+              }}
+            >
+              Cancelar
+            </button>
+          </div>
         </Modal>
       )}
     </div>
