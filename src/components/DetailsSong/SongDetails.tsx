@@ -10,6 +10,7 @@ import imgIcon from '../../assets/jazz.png';
 import { useWakeLock } from '../../hooks/useWakeLock';
 import Modal from '../Modal/Modal';
 import NewSongForm from '../Forms/NewSongForm';
+import Spinner from '../Spinner/Spinner';
 
 type SongContentProps = {
   song: Song;
@@ -17,6 +18,7 @@ type SongContentProps = {
 };
 
 export default function SongDetails({ song, id }: SongContentProps) {
+  const loading = useSongsStore((state) => state.loading);
   const [fontSizeLyrics, setFontSizeLyrics] = useState(16);
   const [fontSizeChords, setFontSizeChords] = useState(16);
   const [activeTab, setActiveTab] = useState('lyrics');
@@ -234,33 +236,42 @@ export default function SongDetails({ song, id }: SongContentProps) {
             <h3>¿Estás seguro?</h3>
           )}
           <div style={{ marginTop: '20px' }}>
-            <button
-              onClick={() => songDelete(user, id)}
-              style={{
-                padding: '10px 15px',
-                backgroundColor: 'red',
-                color: 'white',
-                border: 'none',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                marginRight: '10px',
-              }}
-            >
-              Eliminar
-            </button>
-            <button
-              onClick={() => setIsModalDeleteOpen(false)}
-              style={{
-                padding: '10px 15px',
-                backgroundColor: 'var(--purple)',
-                color: 'white',
-                border: 'none',
-                borderRadius: '4px',
-                cursor: 'pointer',
-              }}
-            >
-              Cancelar
-            </button>
+            {loading ? (
+              <Spinner />
+            ) : (
+              <div>
+                <button
+                  onClick={async () => {
+                    await songDelete(user, id);
+                    navigate(-1);
+                  }}
+                  style={{
+                    padding: '10px 15px',
+                    backgroundColor: 'red',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    marginRight: '10px',
+                  }}
+                >
+                  Eliminar
+                </button>
+                <button
+                  onClick={() => setIsModalDeleteOpen(false)}
+                  style={{
+                    padding: '10px 15px',
+                    backgroundColor: 'var(--purple)',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Cancelar
+                </button>
+              </div>
+            )}
           </div>
         </Modal>
       )}
