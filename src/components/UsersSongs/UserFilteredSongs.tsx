@@ -36,7 +36,7 @@ const UserFilteredSongs = ({
   selectedGenre,
   setSelectedGenre,
 }: UserFilteredSongs) => {
-  const [currentPage, setCurrentPage] = useState(2);
+  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const startIndex = (currentPage - 1) * itemsPerPage;
   const totalPages = Math.ceil(songs.length / itemsPerPage);
