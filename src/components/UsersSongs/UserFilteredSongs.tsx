@@ -36,6 +36,12 @@ const UserFilteredSongs = ({
   selectedGenre,
   setSelectedGenre,
 }: UserFilteredSongs) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const totalPages = Math.ceil(songs.length / itemsPerPage);
+  const currentSongs = songs.slice(startIndex, startIndex + itemsPerPage);
+
   const [artistImages, setArtistImages] = useState<{
     [artist: string]: string;
   }>(() => {
@@ -166,7 +172,7 @@ const UserFilteredSongs = ({
       )}
 
       <ul className={styles.songList}>
-        {songs.map((song) => (
+        {currentSongs.map((song) => (
           <li
             key={song.id}
             className={styles.song}
