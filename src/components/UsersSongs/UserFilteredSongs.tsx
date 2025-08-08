@@ -36,11 +36,16 @@ const UserFilteredSongs = ({
   selectedGenre,
   setSelectedGenre,
 }: UserFilteredSongs) => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(2);
   const itemsPerPage = 10;
   const startIndex = (currentPage - 1) * itemsPerPage;
   const totalPages = Math.ceil(songs.length / itemsPerPage);
   const currentSongs = songs.slice(startIndex, startIndex + itemsPerPage);
+  const pages = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pages.push(i);
+  }
+  console.log(pages);
 
   const [artistImages, setArtistImages] = useState<{
     [artist: string]: string;
@@ -170,6 +175,16 @@ const UserFilteredSongs = ({
           <ButtonCategory selected={true}>{selectedGenre}</ButtonCategory>
         </div>
       )}
+      <ul style={{ display: 'flex', flexDirection: 'row', marginTop: 10 }}>
+        {pages.map((page) => (
+          <p
+            style={{ marginLeft: '10px', cursor: 'pointer' }}
+            onClick={() => setCurrentPage(page)}
+          >
+            {page}
+          </p>
+        ))}
+      </ul>
 
       <ul className={styles.songList}>
         {currentSongs.map((song) => (
