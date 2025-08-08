@@ -94,8 +94,8 @@ export default function SongDetails({ song, id }: SongContentProps) {
           />
         </div>
         <div style={{ marginLeft: '10px', width: '100%' }}>
-          <h2 style={{ margin: '0', marginRight: '60px' }}>{song.title}</h2>
-          <h3 style={{ margin: '0', marginRight: '60px' }}>{song.artist}</h3>
+          <h2 style={{ margin: '0' }}>{song.title}</h2>
+          <h3 style={{ margin: '0' }}>{song.artist}</h3>
         </div>
         <button
           onClick={() => setIsModalDeleteOpen(true)}
