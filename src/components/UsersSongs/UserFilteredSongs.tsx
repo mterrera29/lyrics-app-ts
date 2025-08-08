@@ -178,7 +178,13 @@ const UserFilteredSongs = ({
       <ul style={{ display: 'flex', flexDirection: 'row', marginTop: 10 }}>
         {pages.map((page) => (
           <p
-            style={{ marginLeft: '10px', cursor: 'pointer' }}
+            style={{
+              marginLeft: '10px',
+              cursor: 'pointer',
+              color: page === currentPage ? 'var(--purple)' : 'grey',
+              fontSize: 20,
+              fontWeight: 'bold',
+            }}
             onClick={() => setCurrentPage(page)}
           >
             {page}
