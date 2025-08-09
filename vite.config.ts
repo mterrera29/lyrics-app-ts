@@ -15,7 +15,6 @@ export default defineConfig({
         name: 'Cancionero',
         short_name: 'Cancionero',
         description: 'Una aplicación progresiva creada con React y Vite',
-        start_url: '/',
         display: 'standalone',
         background_color: '#ffffff',
         theme_color: '#4f46e5',
