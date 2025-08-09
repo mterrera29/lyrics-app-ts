@@ -42,10 +42,10 @@ const UserFilteredSongs = ({
   const totalPages = Math.ceil(songs.length / itemsPerPage);
   const currentSongs = songs.slice(startIndex, startIndex + itemsPerPage);
   const pages = [];
+
   for (let i = 1; i <= totalPages; i++) {
     pages.push(i);
   }
-  console.log(pages);
 
   const [artistImages, setArtistImages] = useState<{
     [artist: string]: string;
