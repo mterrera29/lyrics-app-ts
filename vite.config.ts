@@ -10,15 +10,26 @@ export default defineConfig({
     svgr(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['favicon.svg'],
       manifest: {
-        name: 'MAPp',
-        short_name: 'MiApp',
+        name: 'Cancionero',
+        short_name: 'Cancionero',
         description: 'Una aplicación progresiva creada con React y Vite',
-        start_url: '/',
+        start_url: '.',
         display: 'standalone',
         background_color: '#ffffff',
         theme_color: '#4f46e5',
+        icons: [
+          {
+            src: 'public/icon.png',
+            sizes: '192x192',
+            type: 'image/png',
+          },
+          {
+            src: 'public/icon.png',
+            sizes: '512x512',
+            type: 'image/png',
+          },
+        ],
       },
     }),
   ],
