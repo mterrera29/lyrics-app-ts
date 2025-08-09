@@ -10,26 +10,15 @@ export default defineConfig({
     svgr(),
     VitePWA({
       registerType: 'autoUpdate',
+      includeAssets: ['favicon.svg'],
       manifest: {
-        name: 'Nombre de tu App',
-        short_name: 'AppCorta',
-        description: 'Descripción de la PWA',
-        theme_color: '#ffffff',
-        background_color: '#ffffff',
-        display: 'standalone',
+        name: 'MAPp',
+        short_name: 'MiApp',
+        description: 'Una aplicación progresiva creada con React y Vite',
         start_url: '/',
-        icons: [
-          {
-            src: 'icon.png',
-            sizes: '192x192',
-            type: 'image/png',
-          },
-          {
-            src: 'icon.png',
-            sizes: '512x512',
-            type: 'image/png',
-          },
-        ],
+        display: 'standalone',
+        background_color: '#ffffff',
+        theme_color: '#4f46e5',
       },
     }),
   ],
