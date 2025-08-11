@@ -179,7 +179,7 @@ const UserFilteredSongs = ({
         {pages.map((page) => (
           <p
             style={{
-              marginLeft: '10px',
+              marginLeft: '30px',
               cursor: 'pointer',
               color: page === currentPage ? 'var(--purple)' : 'grey',
               fontSize: 20,
