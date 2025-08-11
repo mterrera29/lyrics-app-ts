@@ -14,7 +14,7 @@ export default defineConfig({
         name: 'Cancionero', // Nombre completo de la aplicación.
         short_name: 'Cancionero', // Nombre corto que aparece en la pantalla de inicio.
         description: 'Una Progressive Web App creada con React y Vite', // Breve descripción de la aplicación.
-        theme_color: '#eef0f1', // Color del tema que se muestra en la barra de herramientas del navegador.
+        theme_color: '#ffffffff', // Color del tema que se muestra en la barra de herramientas del navegador.
         background_color: '#ffffffff', // Color de fondo de la pantalla de carga inicial.
         display: 'standalone', // Modo de visualización: "standalone" simula una app nativa.
         orientation: 'portrait', // Orientación preferida de la aplicación.
