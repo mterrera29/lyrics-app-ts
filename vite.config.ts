@@ -15,18 +15,18 @@ export default defineConfig({
         short_name: 'Cancionero', // Nombre corto que aparece en la pantalla de inicio.
         description: 'Una Progressive Web App creada con React y Vite', // Breve descripción de la aplicación.
         theme_color: '#eef0f1', // Color del tema que se muestra en la barra de herramientas del navegador.
-        background_color: '#eef0f1', // Color de fondo de la pantalla de carga inicial.
+        background_color: '#ffffffff', // Color de fondo de la pantalla de carga inicial.
         display: 'standalone', // Modo de visualización: "standalone" simula una app nativa.
         orientation: 'portrait', // Orientación preferida de la aplicación.
         start_url: '/', // URL inicial al abrir la aplicación.
         icons: [
           {
-            src: '/icon2.png', // Ruta del icono de 192x192 píxeles.
+            src: '/icon.png', // Ruta del icono de 192x192 píxeles.
             sizes: '192x192', // Tamaño del icono.
             type: 'image/png', // Tipo de archivo del icono.
           },
           {
-            src: '/icon2.png', // Ruta del icono de 512x512 píxeles.
+            src: '/icon.png', // Ruta del icono de 512x512 píxeles.
             sizes: '512x512', // Tamaño del icono.
             type: 'image/png', // Tipo de archivo del icono.
           },
