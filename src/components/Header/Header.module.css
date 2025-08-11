@@ -144,3 +144,15 @@
 .modal-close:active {
   transform: scale(0.95);
 }
+
+@media (max-width: 768px) {
+  .side-menu {
+    width: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .side-menu {
+    width: 100%;
+  }
+}
