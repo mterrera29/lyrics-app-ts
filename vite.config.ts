@@ -21,12 +21,12 @@ export default defineConfig({
         start_url: '/', // URL inicial al abrir la aplicación.
         icons: [
           {
-            src: '/icon.png', // Ruta del icono de 192x192 píxeles.
+            src: '/icon2.png', // Ruta del icono de 192x192 píxeles.
             sizes: '192x192', // Tamaño del icono.
             type: 'image/png', // Tipo de archivo del icono.
           },
           {
-            src: '/icon.png', // Ruta del icono de 512x512 píxeles.
+            src: '/icon2.png', // Ruta del icono de 512x512 píxeles.
             sizes: '512x512', // Tamaño del icono.
             type: 'image/png', // Tipo de archivo del icono.
           },
